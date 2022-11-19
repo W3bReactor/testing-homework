@@ -31,12 +31,12 @@ export const Cart: React.FC = () => {
         const rows = Object.entries(cart).map(([id, item], index) => {
 
             return (
-                <tr key={id} data-testid={id}>
+                <tr  key={id} data-testid={id}>
                     <th className={bem('Index')} scope="row">{index + 1}</th>
-                    <td className={bem('Name')}>{item.name}</td>
-                    <td className={bem('Price')}>${item.price}</td>
-                    <td className={bem('Count')}>{item.count}</td>
-                    <td className={bem('Total')}>${item.count * item.price}</td>
+                    <td data-testid="cart-title" className={bem('Name')}>{item.name}</td>
+                    <td data-testid="cart-price" className={bem('Price')}>${item.price}</td>
+                    <td data-testid="cart-count" className={bem('Count')}>{item.count}</td>
+                    <td data-testid="cart-total" className={bem('Total')}>${item.count * item.price}</td>
                 </tr>
             );
         });
@@ -60,7 +60,7 @@ export const Cart: React.FC = () => {
                 <tfoot>
                     <tr>
                         <td colSpan={4}>Order price:</td>
-                        <td className={bem('OrderPrice')}>${total}</td>
+                        <td data-testid="cart-total-price" className={bem('OrderPrice')}>${total}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -68,7 +68,7 @@ export const Cart: React.FC = () => {
     } else {
         content = (
             <>
-                Cart is empty. Please select products in the <Link to="/catalog">catalog</Link>.
+                Cart is empty. Please select products in the <Link data-testid="cart-link" to="/catalog">catalog</Link>.
             </>
         );
     }
@@ -76,7 +76,7 @@ export const Cart: React.FC = () => {
     const actions = cartIsEmpty ? null : (
         <div className="row mb-4">
             <div className="col-6">
-                <button className={bem('Clear', ['btn', 'btn-outline-secondary'])} onClick={onClear}>Clear shopping cart</button>
+                <button data-testid="clear-cart" className={bem('Clear', ['btn', 'btn-outline-secondary'])} onClick={onClear}>Clear shopping cart</button>
             </div>
         </div>
     );
